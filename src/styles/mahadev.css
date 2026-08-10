@@ -28,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-main);
   overflow-x: hidden;
@@ -58,7 +58,7 @@ img {
 
 /* Typography */
 h1, h2, h3, .brand-font {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), 'Cinzel', serif;
   letter-spacing: 0.5px;
 }
 
@@ -260,21 +260,28 @@ header.scrolled {
 
 /* Hero Section */
 .hero {
-  padding: 0;
+  padding: 0 !important;
   height: 100vh;
+  min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-.hero-swiper {
+.hero .hero-swiper,
+.hero .swiper,
+.hero .swiper-wrapper {
   width: 100%;
-  height: 100%;
+  height: 100% !important;
 }
 
-.swiper-slide {
+.hero .swiper-slide {
   position: relative;
-  background-size: cover;
-  background-position: center;
-  display: flex;
+  width: 100%;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }
@@ -286,6 +293,7 @@ header.scrolled {
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, rgba(10, 13, 20, 0.6) 0%, rgba(10, 13, 20, 0.85) 80%, #0a0d14 100%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -293,6 +301,7 @@ header.scrolled {
   z-index: 2;
   text-align: center;
   max-width: 900px;
+  width: 100%;
   padding: 0 1.5rem;
   margin-top: 60px;
 }
@@ -322,6 +331,7 @@ header.scrolled {
 .hero-title span {
   background: linear-gradient(135deg, #fff 30%, var(--accent-gold) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -341,32 +351,62 @@ header.scrolled {
   flex-wrap: wrap;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.hero .swiper-button-next,
+.hero .swiper-button-prev {
   color: var(--accent-gold) !important;
-  background: rgba(10, 13, 20, 0.5);
+  background: rgba(10, 13, 20, 0.5) !important;
   width: 50px !important;
   height: 50px !important;
+  margin-top: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%);
   border-radius: 50%;
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(5px);
   transition: var(--transition);
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
+.hero .swiper-button-next:after,
+.hero .swiper-button-prev:after {
   font-size: 1.2rem !important;
+  font-weight: 700;
 }
 
-.swiper-button-next:hover, .swiper-button-prev:hover {
-  background: var(--accent-gold);
+.hero .swiper-button-next svg,
+.hero .swiper-button-prev svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.hero .swiper-button-next:hover,
+.hero .swiper-button-prev:hover {
+  background: var(--accent-gold) !important;
   color: #000 !important;
 }
 
-.swiper-pagination-bullet {
+.hero .swiper-pagination-bullet {
   background: #fff !important;
   opacity: 0.4;
   width: 10px;
   height: 10px;
   transition: var(--transition);
+}
+
+.hero .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--accent-gold) !important;
+  width: 30px;
+  border-radius: 5px;
+}
+
+/* Legacy selectors kept for non-hero swipers if any */
+.swiper-button-next, .swiper-button-prev {
+  color: var(--accent-gold) !important;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.4;
 }
 
 .swiper-pagination-bullet-active {
@@ -1217,7 +1257,7 @@ footer {
   position: relative;
   padding: 10rem 0 5rem 0;
   background: radial-gradient(circle at 50% 30%, rgba(30, 96, 145, 0.25) 0%, rgba(10, 13, 20, 0.95) 80%),
-              url('../images/home-banner-2.jpg') center/cover no-repeat;
+              url('/images/home-banner-2.jpg') center/cover no-repeat;
   text-align: center;
   border-bottom: 1px solid var(--border-light);
 }
