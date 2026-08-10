@@ -39,17 +39,19 @@ export type HeroSlide = {
   secondaryCtaLabel?: string
 }
 
-export type MatchItem = {
-  teams?: string
-  league?: string
-  time?: string
-  status?: string
+export type Match = {
+  teams?: string;
+  league?: string;
+  time?: string;
+  status?: string;
+  image?: string;
+  title?: string;
 }
 
 export type MatchCategory = {
-  name?: string
-  icon?: string
-  matches?: MatchItem[]
+  name: string;
+  icon?: string;
+  matches?: Match[];
 }
 
 export type CasinoGame = {
