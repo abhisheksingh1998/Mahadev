@@ -26,6 +26,28 @@ function MatchImageCard({
   );
 }
 
+// Home page match cards
+export const categories: MatchCategory[] = [
+  {
+    name: "Sports",
+    icon: "fa-trophy",
+    matches: [
+      {
+        image: "/images/cricket.jpg",
+        title: "Cricket",
+      },
+      {
+        image: "/images/teen-patti.jpg",
+        title: "Teen Patti",
+      },
+      {
+        image: "/images/casino.jpg",
+        title: "Live Casino",
+      },
+    ],
+  },
+];
+
 export function LiveMatches({
   title,
   subtitle,
