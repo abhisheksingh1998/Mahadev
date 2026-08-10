@@ -1128,50 +1128,38 @@ footer {
 .matches-image-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 1.5rem;
   width: 100%;
 }
 
 .match-image-card {
+  display: block;
   position: relative;
   width: 100%;
   height: 380px;
   overflow: hidden;
-  border-radius: 18px;
-  background: #111;
+  border-radius: 20px;
   cursor: pointer;
+  background: transparent;
 }
 
 .match-card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 
-.match-card-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 30px 22px 22px;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85),
-    rgba(0, 0, 0, 0)
-  );
-}
-
-.match-card-overlay h3 {
-  margin: 0;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-}
-
+/* Image hover */
 .match-image-card:hover .match-card-image {
-  transform: scale(1.08);
+  transform: scale(1.05);
+}
+
+/* Remove old text overlay */
+.match-card-overlay {
+  display: none !important;
 }
 
 
@@ -1207,9 +1195,7 @@ footer {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
-}
 
-@media (max-width: 900px) {
   .matches-image-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1217,7 +1203,18 @@ footer {
   .match-image-card {
     height: 320px;
   }
+
 }
+
+/* @media (max-width: 900px) {
+  .matches-image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .match-image-card {
+    height: 320px;
+  }
+} */
 
 @media (max-width: 868px) {
   .match-card {
@@ -1314,6 +1311,7 @@ footer {
 @media (max-width: 600px) {
   .matches-image-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .match-image-card {
