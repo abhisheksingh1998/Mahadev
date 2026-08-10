@@ -46,13 +46,35 @@ export type Match = {
   status?: string;
   image?: string;
   title?: string;
-}
+};
 
 export type MatchCategory = {
   name: string;
   icon?: string;
   matches?: Match[];
-}
+};
+
+// 👇 YAHAN ADD KARO
+export const categories: MatchCategory[] = [
+  {
+    name: "Sports",
+    icon: "fa-trophy",
+    matches: [
+      {
+        image: "/images/cricket.jpg",
+        title: "Cricket",
+      },
+      {
+        image: "/images/teen-patti.jpg",
+        title: "Teen Patti",
+      },
+      {
+        image: "/images/casino.jpg",
+        title: "Live Casino",
+      },
+    ],
+  },
+];
 
 export type CasinoGame = {
   image?: SanityImage
