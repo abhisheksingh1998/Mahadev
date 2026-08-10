@@ -46,13 +46,13 @@ export type Match = {
   status?: string;
   image?: string;
   title?: string;
-};
+}
 
 export type MatchCategory = {
   name: string;
   icon?: string;
   matches?: Match[];
-};
+}
 
 // 👇 YAHAN ADD KARO
 export const categories: MatchCategory[] = [
