@@ -1,6 +1,10 @@
 "use client";
 
 import type { MatchCategory } from "@/lib/types";
+import { categories } from "@/lib/categories";
+<LiveMatches categories={categories} />
+
+const WHATSAPP_LINK = "PASTE_YOUR_WHATSAPP_LINK_HERE";
 
 function MatchImageCard({
   match,
@@ -12,41 +16,21 @@ function MatchImageCard({
   };
 }) {
   return (
-    <div className="match-image-card">
+    <a
+      href={WHATSAPP_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="match-image-card"
+      aria-label={match.title || match.teams || "Live Game"}
+    >
       <img
         src={match.image || "/images/default-match.jpg"}
-        alt={match.title || match.teams || "Match"}
+        alt={match.title || match.teams || "Live Game"}
         className="match-card-image"
       />
-
-      <div className="match-card-overlay">
-        <h3>{match.title || match.teams}</h3>
-      </div>
-    </div>
+    </a>
   );
 }
-
-// Home page match cards
-export const categories: MatchCategory[] = [
-  {
-    name: "Sports",
-    icon: "fa-trophy",
-    matches: [
-      {
-        image: "/images/cricket.jpg",
-        title: "Cricket",
-      },
-      {
-        image: "/images/teen-patti.jpg",
-        title: "Teen Patti",
-      },
-      {
-        image: "/images/casino.jpg",
-        title: "Live Casino",
-      },
-    ],
-  },
-];
 
 export function LiveMatches({
   title,
@@ -59,7 +43,7 @@ export function LiveMatches({
 }) {
   if (!categories?.length) return null;
 
-  // Take only first 3 matches
+  // Only first 3 cards
   const matches = categories
     .flatMap((category) => category.matches || [])
     .slice(0, 3);
@@ -70,7 +54,7 @@ export function LiveMatches({
 
         <div className="title-wrapper" data-aos="fade-up">
           <h2 className="section-title">
-            {title || "Live Games"}
+            Live Games
           </h2>
 
           {subtitle ? (
@@ -81,7 +65,7 @@ export function LiveMatches({
         <div className="matches-image-grid" data-aos="fade-up">
           {matches.map((match, index) => (
             <MatchImageCard
-              key={`${match.teams}-${match.time}-${index}`}
+              key={`${match.title}-${index}`}
               match={match}
             />
           ))}
