@@ -37,7 +37,6 @@ export function LiveMatches({
 }) {
   if (!categories?.length) return null;
 
-  // Take only first 3 matches
   const matches = categories
     .flatMap((category) => category.matches || [])
     .slice(0, 3);
@@ -48,18 +47,20 @@ export function LiveMatches({
 
         <div className="title-wrapper" data-aos="fade-up">
           <h2 className="section-title">
-            {title || "Live & Upcoming Matches"}
+            {title || "Live Games"}
           </h2>
 
-          {subtitle ? (
-            <p className="section-subtitle">{subtitle}</p>
-          ) : null}
+          {subtitle && (
+            <p className="section-subtitle">
+              {subtitle}
+            </p>
+          )}
         </div>
 
         <div className="matches-image-grid" data-aos="fade-up">
           {matches.map((match, index) => (
             <MatchImageCard
-              key={`${match.teams}-${match.time}-${index}`}
+              key={`${match.title || match.teams || "match"}-${index}`}
               match={match}
             />
           ))}
