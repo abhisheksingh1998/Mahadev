@@ -5,6 +5,13 @@ import {fallbackHomePage, fallbackPosts, fallbackSiteSettings} from './fallbacks
 const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   title,
   description,
+  siteUrl,
+  organizationName,
+  ogImage,
+  twitterHandle,
+  googleAnalyticsId,
+  googleSiteVerification,
+  bingSiteVerification,
   whatsappUrl,
   whatsappTooltip,
   logo,
@@ -102,7 +109,11 @@ const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
   blockquote{text, cite},
   tags,
   seoTitle,
-  seoDescription
+  seoDescription,
+  seoFocusKeyword,
+  seoOgImage,
+  seoNoIndex,
+  seoCanonicalUrl
 }`
 
 const postSlugsQuery = `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`

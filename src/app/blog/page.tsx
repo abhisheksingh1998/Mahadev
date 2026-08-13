@@ -3,16 +3,25 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BlogListing } from "@/components/blog/BlogListing";
 import { getPosts, getSiteSettings } from "@/lib/queries";
+import { buildMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
-  return {
-    title: `Blog & Sports News | ${settings.title?.split("|")[0]?.trim() || "Mahadev Book"}`,
+  const siteName =
+    settings.organizationName ||
+    settings.title?.split("|")[0]?.trim() ||
+    "Mahadev Book";
+
+  return buildMetadata({
+    title: `Blog & Sports News | ${siteName}`,
     description:
       "Stay updated with the latest sports news, IPL betting guides, match predictions, and expert strategies on Mahadev Book Blog.",
-  };
+    path: "/blog",
+    image: settings.ogImage || settings.logo,
+    siteName: settings.organizationName,
+  });
 }
 
 export default async function BlogPage() {

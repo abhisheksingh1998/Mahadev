@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/home/Hero";
@@ -8,9 +9,22 @@ import { WhyUs } from "@/components/home/WhyUs";
 import { BetBig } from "@/components/home/BetBig";
 import { BlogPreview } from "@/components/home/BlogPreview";
 import { FAQ } from "@/components/home/FAQ";
-import { getHomePage, getPosts } from "@/lib/queries";
+import { JsonLd } from "@/components/JsonLd";
+import { getHomePage, getPosts, getSiteSettings } from "@/lib/queries";
+import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return buildMetadata({
+    title: settings.title || "Mahadev Book | Premium Online Sports Betting ID Provider",
+    description: settings.description,
+    path: "/",
+    image: settings.ogImage || settings.logo,
+    siteName: settings.organizationName,
+  });
+}
 
 export default async function HomePage() {
   const [home, posts] = await Promise.all([getHomePage(), getPosts()]);
@@ -20,6 +34,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={faqJsonLd(home.faqSection?.items || [])} />
       <Header variant="home" />
       <Hero slides={home.heroSlides || []} />
       <LiveMatches

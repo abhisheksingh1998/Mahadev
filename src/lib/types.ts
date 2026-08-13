@@ -14,6 +14,13 @@ export type NavItem = {
 export type SiteSettings = {
   title?: string
   description?: string
+  siteUrl?: string
+  organizationName?: string
+  ogImage?: SanityImage
+  twitterHandle?: string
+  googleAnalyticsId?: string
+  googleSiteVerification?: string
+  bingSiteVerification?: string
   whatsappUrl?: string
   whatsappTooltip?: string
   logo?: SanityImage
@@ -140,4 +147,8 @@ export type PostDetail = PostCard & {
   tags?: string[]
   seoTitle?: string
   seoDescription?: string
+  seoFocusKeyword?: string
+  seoOgImage?: SanityImage
+  seoNoIndex?: boolean
+  seoCanonicalUrl?: string
 }

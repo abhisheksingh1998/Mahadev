@@ -34,7 +34,14 @@ export default defineConfig({
   title: 'Mahadev Book CMS',
   projectId,
   dataset,
-  plugins: [structureTool({structure}), visionTool()],
+  plugins: [
+    structureTool({
+      name: 'default',
+      title: 'Content',
+      structure,
+    }),
+    visionTool({name: 'vision', title: 'Vision'}),
+  ],
   schema: {
     types: schemaTypes,
   },
